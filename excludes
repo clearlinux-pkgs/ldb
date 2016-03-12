@@ -1,0 +1,10 @@
+# This file contains the output files that need %exclude. Full path
+# names, one per line.
+/usr/bin/tdbbackup
+/usr/bin/tdbdump
+/usr/bin/tdbrestore
+/usr/bin/tdbtool
+/usr/lib/debug/usr/bin/tdbbackup.debug
+/usr/lib/debug/usr/bin/tdbdump.debug
+/usr/lib/debug/usr/bin/tdbrestore.debug
+/usr/lib/debug/usr/bin/tdbtool.debug
