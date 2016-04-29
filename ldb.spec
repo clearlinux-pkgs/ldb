@@ -4,7 +4,7 @@
 #
 Name     : ldb
 Version  : 1.1.26
-Release  : 1
+Release  : 2
 URL      : https://www.samba.org/ftp/pub/ldb/ldb-1.1.26.tar.gz
 Source0  : https://www.samba.org/ftp/pub/ldb/ldb-1.1.26.tar.gz
 Summary  : Python bindings for LDB
