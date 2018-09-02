@@ -1,0 +1,22 @@
+--- ldb-1.5.1/buildtools/wafsamba/samba_conftests.py~	2018-08-14 15:34:20.000000000 +0000
++++ ldb-1.5.1/buildtools/wafsamba/samba_conftests.py	2018-09-02 16:32:33.176128992 +0000
+@@ -509,7 +509,7 @@
+         out = Utils.cmd_output(cmd).split('\n')
+     except ValueError:
+         # option not supported by compiler - use a standard list of directories
+-        dirlist = [ '/usr/lib', '/usr/lib64' ]
++        dirlist = [ '/usr/lib64', '/usr/lib' ]
+     except:
+         raise Utils.WafError('Unexpected error running "%s"' % (cmd))
+     else:
+--- ldb-1.5.1/third_party/waf/wafadmin/Tools/libtool.py~	2015-04-29 09:20:16.000000000 +0000
++++ ldb-1.5.1/third_party/waf/wafadmin/Tools/libtool.py	2018-09-02 16:32:55.653128679 +0000
+@@ -141,7 +141,7 @@
+ 		self.dlopen = None
+ 		self.dlpreopen = None
+ 		# Directory that this library needs to be installed in:
+-		self.libdir = '/usr/lib'
++		self.libdir = '/usr/lib64'
+ 		if not self.__parse():
+ 			raise ValueError("file %s not found!!" %(la_filename))
+ 
