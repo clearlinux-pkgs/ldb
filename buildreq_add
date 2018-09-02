@@ -6,3 +6,4 @@ python-dev
 lmdb-dev
 popt-dev
 talloc-dev
+cmocka-dev

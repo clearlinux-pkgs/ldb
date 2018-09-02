@@ -4,7 +4,7 @@
 #
 Name     : ldb
 Version  : 1.5.1
-Release  : 6
+Release  : 7
 URL      : https://www.samba.org/ftp/pub/ldb/ldb-1.5.1.tar.gz
 Source0  : https://www.samba.org/ftp/pub/ldb/ldb-1.5.1.tar.gz
 Summary  : An LDAP-like embedded database
@@ -13,10 +13,13 @@ License  : X11
 Requires: ldb-bin
 Requires: ldb-lib
 Requires: ldb-license
+BuildRequires : cmocka-dev
 BuildRequires : lmdb-dev
 BuildRequires : openldap-dev
+BuildRequires : popt-dev
 BuildRequires : python-core
 BuildRequires : python-dev
+BuildRequires : talloc-dev
 BuildRequires : tdb-dev
 Patch1: 0001_fix_default_install_path.patch
 Patch2: 0002_fix_waf_options.patch
@@ -76,16 +79,20 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535908918
+export SOURCE_DATE_EPOCH=1535909211
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1535908918
+export SOURCE_DATE_EPOCH=1535909211
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/ldb
 cp third_party/popt/COPYING %{buildroot}/usr/share/doc/ldb/third_party_popt_COPYING
 %make_install
+## install_append content
+rmdir %{buildroot}/usr/lib/* || :
+mv %{buildroot}/usr/lib/* %{buildroot}/usr/lib64/
+## install_append end
 
 %files
 %defattr(-,root,root,-)
@@ -113,24 +120,22 @@ cp third_party/popt/COPYING %{buildroot}/usr/share/doc/ldb/third_party_popt_COPY
 %files dev
 %defattr(-,root,root,-)
 /usr/include/*.h
-/usr/lib/libldb.so
+/usr/lib64/libldb.so
 /usr/lib64/pkgconfig/ldb.pc
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib/ldb/libcmocka-ldb.so
-/usr/lib/ldb/libldb-cmdline.so
-/usr/lib/ldb/libldb-key-value.so
-/usr/lib/ldb/libldb-mdb-int.so
-/usr/lib/ldb/libldb-tdb-err-map.so
-/usr/lib/ldb/libldb-tdb-int.so
-/usr/lib/ldb/libpopt-ldb.so
-/usr/lib/ldb/libtalloc.so.2
-/usr/lib/ldb/libtalloc.so.2.1.14
-/usr/lib/ldb/libtevent.so.0
-/usr/lib/ldb/libtevent.so.0.9.37
-/usr/lib/libldb.so.1
-/usr/lib/libldb.so.1.5.1
+/usr/lib64/ldb/libldb-cmdline.so
+/usr/lib64/ldb/libldb-key-value.so
+/usr/lib64/ldb/libldb-mdb-int.so
+/usr/lib64/ldb/libldb-tdb-err-map.so
+/usr/lib64/ldb/libldb-tdb-int.so
+/usr/lib64/ldb/libtalloc.so.2
+/usr/lib64/ldb/libtalloc.so.2.1.14
+/usr/lib64/ldb/libtevent.so.0
+/usr/lib64/ldb/libtevent.so.0.9.37
+/usr/lib64/libldb.so.1
+/usr/lib64/libldb.so.1.5.1
 
 %files license
 %defattr(-,root,root,-)
