@@ -1,22 +1,31 @@
---- ldb-1.5.1/buildtools/wafsamba/samba_conftests.py~	2018-08-14 15:34:20.000000000 +0000
-+++ ldb-1.5.1/buildtools/wafsamba/samba_conftests.py	2018-09-02 16:32:33.176128992 +0000
-@@ -509,7 +509,7 @@
-         out = Utils.cmd_output(cmd).split('\n')
-     except ValueError:
-         # option not supported by compiler - use a standard list of directories
--        dirlist = [ '/usr/lib', '/usr/lib64' ]
-+        dirlist = [ '/usr/lib64', '/usr/lib' ]
-     except:
-         raise Utils.WafError('Unexpected error running "%s"' % (cmd))
-     else:
---- ldb-1.5.1/third_party/waf/wafadmin/Tools/libtool.py~	2015-04-29 09:20:16.000000000 +0000
-+++ ldb-1.5.1/third_party/waf/wafadmin/Tools/libtool.py	2018-09-02 16:32:55.653128679 +0000
-@@ -141,7 +141,7 @@
- 		self.dlopen = None
- 		self.dlpreopen = None
- 		# Directory that this library needs to be installed in:
--		self.libdir = '/usr/lib'
-+		self.libdir = '/usr/lib64'
- 		if not self.__parse():
- 			raise ValueError("file %s not found!!" %(la_filename))
+--- ldb-1.5.1/buildtools/wafsamba/wscript~	2018-08-14 15:34:20.000000000 +0000
++++ ldb-1.5.1/buildtools/wafsamba/wscript	2018-09-02 20:45:48.367917432 +0000
+@@ -68,7 +68,7 @@
  
+     opt.add_option('--with-modulesdir',
+                    help=("modules directory [PREFIX/modules]"),
+-                   action="store", dest='MODULESDIR', default='${PREFIX}/modules')
++                   action="store", dest='MODULESDIR', default='${PREFIX}/lib64/ldb/modules')
+ 
+     opt.add_option('--with-privatelibdir',
+                    help=("private library directory [PREFIX/lib/%s]" % Utils.g_module.APPNAME),
+--- ldb-1.5.1/buildtools/wafsamba/wscript~	2018-09-02 20:45:48.000000000 +0000
++++ ldb-1.5.1/buildtools/wafsamba/wscript	2018-09-02 20:47:38.385915901 +0000
+@@ -71,7 +71,7 @@
+                    action="store", dest='MODULESDIR', default='${PREFIX}/lib64/modules')
+ 
+     opt.add_option('--with-privatelibdir',
+-                   help=("private library directory [PREFIX/lib/%s]" % Utils.g_module.APPNAME),
++                   help=("private library directory [PREFIX/lib64/%s]" % Utils.g_module.APPNAME),
+                    action="store", dest='PRIVATELIBDIR', default=None)
+ 
+     opt.add_option('--with-libiconv',
+@@ -263,7 +263,7 @@
+             cc.run = oldmeth
+ 
+     # make the install paths available in environment
+-    conf.env.LIBDIR = Options.options.LIBDIR or '${PREFIX}/lib'
++    conf.env.LIBDIR = Options.options.LIBDIR or '${PREFIX}/lib64'
+     conf.env.BINDIR = Options.options.BINDIR or '${PREFIX}/bin'
+     conf.env.SBINDIR = Options.options.SBINDIR or '${PREFIX}/sbin'
+     conf.env.MODULESDIR = Options.options.MODULESDIR

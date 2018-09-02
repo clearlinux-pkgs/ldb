@@ -8,3 +8,5 @@
 /usr/lib/debug/usr/bin/tdbdump.debug
 /usr/lib/debug/usr/bin/tdbrestore.debug
 /usr/lib/debug/usr/bin/tdbtool.debug
+
+/usr/lib64/ldb/modules/ldb/ldb.so

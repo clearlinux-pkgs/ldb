@@ -4,16 +4,17 @@
 #
 Name     : ldb
 Version  : 1.5.1
-Release  : 9
+Release  : 15
 URL      : https://www.samba.org/ftp/pub/ldb/ldb-1.5.1.tar.gz
 Source0  : https://www.samba.org/ftp/pub/ldb/ldb-1.5.1.tar.gz
 Summary  : An LDAP-like embedded database
 Group    : Development/Tools
 License  : X11
 Requires: ldb-bin
+Requires: ldb-python3
 Requires: ldb-lib
-Requires: ldb-python
 Requires: ldb-license
+Requires: ldb-python
 BuildRequires : cmocka-dev
 BuildRequires : libtirpc-dev
 BuildRequires : lmdb-dev
@@ -74,9 +75,19 @@ license components for the ldb package.
 %package python
 Summary: python components for the ldb package.
 Group: Default
+Requires: ldb-python3
 
 %description python
 python components for the ldb package.
+
+
+%package python3
+Summary: python3 components for the ldb package.
+Group: Default
+Requires: python3-core
+
+%description python3
+python3 components for the ldb package.
 
 
 %prep
@@ -91,34 +102,19 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535920270
-%configure --disable-static
-make  %{?_smp_mflags}
+export SOURCE_DATE_EPOCH=1535921920
+%configure --disable-static --with-modulesdir=/usr/lib64/ldb/modules
+make  %{?_smp_mflags} LDB_MODULESDIR=/usr/lib64/ldb/modules
 
 %install
-export SOURCE_DATE_EPOCH=1535920270
+export SOURCE_DATE_EPOCH=1535921920
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/ldb
 cp third_party/popt/COPYING %{buildroot}/usr/share/doc/ldb/third_party_popt_COPYING
 %make_install
-## install_append content
-rmdir %{buildroot}/usr/lib/* || :
-mv %{buildroot}/usr/lib/* %{buildroot}/usr/lib64/
-## install_append end
 
 %files
 %defattr(-,root,root,-)
-/usr/modules/ldb/asq.so
-/usr/modules/ldb/ldap.so
-/usr/modules/ldb/ldb.so
-/usr/modules/ldb/mdb.so
-/usr/modules/ldb/paged_results.so
-/usr/modules/ldb/paged_searches.so
-/usr/modules/ldb/rdn_name.so
-/usr/modules/ldb/sample.so
-/usr/modules/ldb/server_sort.so
-/usr/modules/ldb/skel.so
-/usr/modules/ldb/tdb.so
 
 %files bin
 %defattr(-,root,root,-)
@@ -143,6 +139,7 @@ mv %{buildroot}/usr/lib/* %{buildroot}/usr/lib64/
 
 %files lib
 %defattr(-,root,root,-)
+%exclude /usr/lib64/ldb/modules/ldb/ldb.so
 /usr/lib64/ldb/libldb-cmdline.so
 /usr/lib64/ldb/libldb-key-value.so
 /usr/lib64/ldb/libldb-mdb-int.so
@@ -156,6 +153,16 @@ mv %{buildroot}/usr/lib/* %{buildroot}/usr/lib64/
 /usr/lib64/ldb/libtdb.so.1.3.16
 /usr/lib64/ldb/libtevent.so.0
 /usr/lib64/ldb/libtevent.so.0.9.37
+/usr/lib64/ldb/modules/ldb/asq.so
+/usr/lib64/ldb/modules/ldb/ldap.so
+/usr/lib64/ldb/modules/ldb/mdb.so
+/usr/lib64/ldb/modules/ldb/paged_results.so
+/usr/lib64/ldb/modules/ldb/paged_searches.so
+/usr/lib64/ldb/modules/ldb/rdn_name.so
+/usr/lib64/ldb/modules/ldb/sample.so
+/usr/lib64/ldb/modules/ldb/server_sort.so
+/usr/lib64/ldb/modules/ldb/skel.so
+/usr/lib64/ldb/modules/ldb/tdb.so
 /usr/lib64/libldb.so.1
 /usr/lib64/libldb.so.1.5.1
 /usr/lib64/libpyldb-util.cpython-37m-x86-64-linux-gnu.so.1
@@ -167,4 +174,7 @@ mv %{buildroot}/usr/lib/* %{buildroot}/usr/lib64/
 
 %files python
 %defattr(-,root,root,-)
-/usr/lib64/python*/*
+
+%files python3
+%defattr(-,root,root,-)
+/usr/lib/python3*/*
