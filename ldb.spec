@@ -4,7 +4,7 @@
 #
 Name     : ldb
 Version  : 1.5.1
-Release  : 5
+Release  : 6
 URL      : https://www.samba.org/ftp/pub/ldb/ldb-1.5.1.tar.gz
 Source0  : https://www.samba.org/ftp/pub/ldb/ldb-1.5.1.tar.gz
 Summary  : An LDAP-like embedded database
@@ -21,6 +21,7 @@ BuildRequires : tdb-dev
 Patch1: 0001_fix_default_install_path.patch
 Patch2: 0002_fix_waf_options.patch
 Patch3: waf.patch
+Patch4: lib64.patch
 
 %description
 See http://code.google.com/p/waf/ for more information on waf
@@ -68,18 +69,19 @@ license components for the ldb package.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535906060
+export SOURCE_DATE_EPOCH=1535908918
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1535906060
+export SOURCE_DATE_EPOCH=1535908918
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/ldb
 cp third_party/popt/COPYING %{buildroot}/usr/share/doc/ldb/third_party_popt_COPYING

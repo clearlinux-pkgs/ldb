@@ -4,3 +4,5 @@ tdb-dev
 python-core
 python-dev
 lmdb-dev
+popt-dev
+talloc-dev
