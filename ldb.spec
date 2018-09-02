@@ -4,7 +4,7 @@
 #
 Name     : ldb
 Version  : 1.5.1
-Release  : 7
+Release  : 8
 URL      : https://www.samba.org/ftp/pub/ldb/ldb-1.5.1.tar.gz
 Source0  : https://www.samba.org/ftp/pub/ldb/ldb-1.5.1.tar.gz
 Summary  : An LDAP-like embedded database
@@ -12,15 +12,20 @@ Group    : Development/Tools
 License  : X11
 Requires: ldb-bin
 Requires: ldb-lib
+Requires: ldb-python
 Requires: ldb-license
 BuildRequires : cmocka-dev
+BuildRequires : libtirpc-dev
 BuildRequires : lmdb-dev
 BuildRequires : openldap-dev
 BuildRequires : popt-dev
 BuildRequires : python-core
 BuildRequires : python-dev
+BuildRequires : python3-dev
 BuildRequires : talloc-dev
 BuildRequires : tdb-dev
+BuildRequires : tdb-legacypython
+BuildRequires : tevent-dev
 Patch1: 0001_fix_default_install_path.patch
 Patch2: 0002_fix_waf_options.patch
 Patch3: waf.patch
@@ -67,6 +72,14 @@ Group: Default
 license components for the ldb package.
 
 
+%package python
+Summary: python components for the ldb package.
+Group: Default
+
+%description python
+python components for the ldb package.
+
+
 %prep
 %setup -q -n ldb-1.5.1
 %patch1 -p1
@@ -79,12 +92,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535909211
+export SOURCE_DATE_EPOCH=1535911621
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1535909211
+export SOURCE_DATE_EPOCH=1535911621
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/ldb
 cp third_party/popt/COPYING %{buildroot}/usr/share/doc/ldb/third_party_popt_COPYING
@@ -121,7 +134,9 @@ mv %{buildroot}/usr/lib/* %{buildroot}/usr/lib64/
 %defattr(-,root,root,-)
 /usr/include/*.h
 /usr/lib64/libldb.so
+/usr/lib64/libpyldb-util.cpython-37m-x86-64-linux-gnu.so
 /usr/lib64/pkgconfig/ldb.pc
+/usr/lib64/pkgconfig/pyldb-util.pc
 
 %files lib
 %defattr(-,root,root,-)
@@ -130,13 +145,21 @@ mv %{buildroot}/usr/lib/* %{buildroot}/usr/lib64/
 /usr/lib64/ldb/libldb-mdb-int.so
 /usr/lib64/ldb/libldb-tdb-err-map.so
 /usr/lib64/ldb/libldb-tdb-int.so
+/usr/lib64/ldb/libpytalloc-util.cpython-37m-x86-64-linux-gnu.so.2
+/usr/lib64/ldb/libpytalloc-util.cpython-37m-x86-64-linux-gnu.so.2.1.14
 /usr/lib64/ldb/libtalloc.so.2
 /usr/lib64/ldb/libtalloc.so.2.1.14
 /usr/lib64/ldb/libtevent.so.0
 /usr/lib64/ldb/libtevent.so.0.9.37
 /usr/lib64/libldb.so.1
 /usr/lib64/libldb.so.1.5.1
+/usr/lib64/libpyldb-util.cpython-37m-x86-64-linux-gnu.so.1
+/usr/lib64/libpyldb-util.cpython-37m-x86-64-linux-gnu.so.1.5.1
 
 %files license
 %defattr(-,root,root,-)
 /usr/share/doc/ldb/third_party_popt_COPYING
+
+%files python
+%defattr(-,root,root,-)
+/usr/lib64/python*/*

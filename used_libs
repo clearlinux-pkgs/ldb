@@ -5,6 +5,9 @@ liblber-2.4.so.2
 libldap-2.4.so.2
 libldb_module_tdb.so
 liblmdb.so
+libm.so.6
 libpopt.so.0
 libpthread.so.0
+libpython3.7m.so.1.0
 libtdb.so.1
+libutil.so.1

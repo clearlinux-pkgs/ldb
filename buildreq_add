@@ -7,3 +7,7 @@ lmdb-dev
 popt-dev
 talloc-dev
 cmocka-dev
+tdb-legacypython
+python3-dev
+tevent-dev
+libtirpc-dev
