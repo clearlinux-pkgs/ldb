@@ -59,6 +59,7 @@ dev components for the ldb package.
 Summary: lib components for the ldb package.
 Group: Libraries
 Requires: ldb-license
+Requires: tdb-lib
 
 %description lib
 lib components for the ldb package.
