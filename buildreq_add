@@ -1,12 +1,11 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
-python-core
-python-dev
 lmdb-dev
 popt-dev
 talloc-dev
 cmocka-dev
 tdb-legacypython
+openldap-dev
 python3-dev
 tevent-dev
 libtirpc-dev

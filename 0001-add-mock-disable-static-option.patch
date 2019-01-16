@@ -1,0 +1,13 @@
+--- ldb-1.5.2/wscript.orig	2019-01-16 13:40:18.396661310 -0800
++++ ldb-1.5.2/wscript	2019-01-16 13:40:39.738460060 -0800
+@@ -37,6 +37,10 @@
+     opt.add_option('--without-ldb-lmdb',
+                    help='disable new LMDB backend for LDB',
+                    action='store_true', dest='without_ldb_lmdb', default=False)
++    opt.add_option('--disable-static',
++                   help='unused option, added to avoid %configure (RPM) macro break',
++                   action='store_false',
++                   dest='disable_static')
+ 
+ 
+ def configure(conf):
