@@ -4,7 +4,7 @@ lmdb-dev
 popt-dev
 talloc-dev
 cmocka-dev
-tdb-legacypython
+tdb-python3
 openldap-dev
 python3-dev
 tevent-dev

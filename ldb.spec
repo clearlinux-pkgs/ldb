@@ -4,7 +4,7 @@
 #
 Name     : ldb
 Version  : 1.5.2
-Release  : 18
+Release  : 19
 URL      : https://www.samba.org/ftp/pub/ldb/ldb-1.5.2.tar.gz
 Source0  : https://www.samba.org/ftp/pub/ldb/ldb-1.5.2.tar.gz
 Summary  : An LDAP-like embedded database
@@ -22,7 +22,7 @@ BuildRequires : openldap-dev
 BuildRequires : popt-dev
 BuildRequires : python3-dev
 BuildRequires : talloc-dev
-BuildRequires : tdb-legacypython
+BuildRequires : tdb-python3
 BuildRequires : tevent-dev
 Patch1: 0001-add-mock-disable-static-option.patch
 Patch2: 0002_fix_finding_waf.patch
@@ -96,13 +96,13 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1547676073
+export SOURCE_DATE_EPOCH=1547677796
 %configure --disable-static --with-modulesdir=/usr/lib64/ldb/modules \
 --disable-rpath --disable-rpath-install
 make  %{?_smp_mflags} LDB_MODULESDIR=/usr/lib64/ldb/modules
 
 %install
-export SOURCE_DATE_EPOCH=1547676073
+export SOURCE_DATE_EPOCH=1547677796
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/ldb
 cp third_party/popt/COPYING %{buildroot}/usr/share/package-licenses/ldb/third_party_popt_COPYING
