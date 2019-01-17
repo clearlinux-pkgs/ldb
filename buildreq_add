@@ -3,7 +3,9 @@
 lmdb-dev
 popt-dev
 talloc-dev
+talloc-python3
 cmocka-dev
+tdb-dev
 tdb-python3
 openldap-dev
 python3-dev

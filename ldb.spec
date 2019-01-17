@@ -4,7 +4,7 @@
 #
 Name     : ldb
 Version  : 1.5.2
-Release  : 19
+Release  : 21
 URL      : https://www.samba.org/ftp/pub/ldb/ldb-1.5.2.tar.gz
 Source0  : https://www.samba.org/ftp/pub/ldb/ldb-1.5.2.tar.gz
 Summary  : An LDAP-like embedded database
@@ -22,6 +22,8 @@ BuildRequires : openldap-dev
 BuildRequires : popt-dev
 BuildRequires : python3-dev
 BuildRequires : talloc-dev
+BuildRequires : talloc-python3
+BuildRequires : tdb-dev
 BuildRequires : tdb-python3
 BuildRequires : tevent-dev
 Patch1: 0001-add-mock-disable-static-option.patch
@@ -49,6 +51,14 @@ Provides: ldb-devel = %{version}-%{release}
 
 %description dev
 dev components for the ldb package.
+
+
+%package extras
+Summary: extras components for the ldb package.
+Group: Default
+
+%description extras
+extras components for the ldb package.
 
 
 %package lib
@@ -96,13 +106,13 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1547677796
+export SOURCE_DATE_EPOCH=1547743966
 %configure --disable-static --with-modulesdir=/usr/lib64/ldb/modules \
 --disable-rpath --disable-rpath-install
 make  %{?_smp_mflags} LDB_MODULESDIR=/usr/lib64/ldb/modules
 
 %install
-export SOURCE_DATE_EPOCH=1547677796
+export SOURCE_DATE_EPOCH=1547743966
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/ldb
 cp third_party/popt/COPYING %{buildroot}/usr/share/package-licenses/ldb/third_party_popt_COPYING
@@ -113,10 +123,6 @@ cp third_party/popt/COPYING %{buildroot}/usr/share/package-licenses/ldb/third_pa
 
 %files bin
 %defattr(-,root,root,-)
-%exclude /usr/bin/tdbbackup
-%exclude /usr/bin/tdbdump
-%exclude /usr/bin/tdbrestore
-%exclude /usr/bin/tdbtool
 /usr/bin/ldbadd
 /usr/bin/ldbdel
 /usr/bin/ldbedit
@@ -132,16 +138,23 @@ cp third_party/popt/COPYING %{buildroot}/usr/share/package-licenses/ldb/third_pa
 /usr/lib64/pkgconfig/ldb.pc
 /usr/lib64/pkgconfig/pyldb-util.cpython-37m-x86_64-linux-gnu.pc
 
+%files extras
+%defattr(-,root,root,-)
+/usr/lib64/libpyldb-util.cpython-37m-x86-64-linux-gnu.so.1
+/usr/lib64/libpyldb-util.cpython-37m-x86-64-linux-gnu.so.1.5.2
+
 %files lib
 %defattr(-,root,root,-)
 %exclude /usr/lib64/ldb/modules/ldb/ldb.so
+%exclude /usr/lib64/libpyldb-util.cpython-37m-x86-64-linux-gnu.so.1
+%exclude /usr/lib64/libpyldb-util.cpython-37m-x86-64-linux-gnu.so.1.5.2
 /usr/lib64/ldb/libldb-cmdline.so
 /usr/lib64/ldb/libldb-key-value.so
 /usr/lib64/ldb/libldb-mdb-int.so
 /usr/lib64/ldb/libldb-tdb-err-map.so
 /usr/lib64/ldb/libldb-tdb-int.so
-/usr/lib64/ldb/libtdb.so.1
-/usr/lib64/ldb/libtdb.so.1.3.17
+/usr/lib64/ldb/libtevent.so.0
+/usr/lib64/ldb/libtevent.so.0.9.38
 /usr/lib64/ldb/modules/ldb/asq.so
 /usr/lib64/ldb/modules/ldb/ldap.so
 /usr/lib64/ldb/modules/ldb/mdb.so
@@ -153,8 +166,6 @@ cp third_party/popt/COPYING %{buildroot}/usr/share/package-licenses/ldb/third_pa
 /usr/lib64/ldb/modules/ldb/tdb.so
 /usr/lib64/libldb.so.1
 /usr/lib64/libldb.so.1.5.2
-/usr/lib64/libpyldb-util.cpython-37m-x86-64-linux-gnu.so.1
-/usr/lib64/libpyldb-util.cpython-37m-x86-64-linux-gnu.so.1.5.2
 
 %files license
 %defattr(0644,root,root,0755)
