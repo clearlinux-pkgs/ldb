@@ -1,13 +1,14 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
+cmocka-dev
+libtirpc-dev
 lmdb-dev
+openldap-dev
 popt-dev
+python3-dev
 talloc-dev
 talloc-python3
-cmocka-dev
 tdb-dev
 tdb-python3
-openldap-dev
-python3-dev
 tevent-dev
-libtirpc-dev
+tevent-python3
