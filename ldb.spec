@@ -4,7 +4,7 @@
 #
 Name     : ldb
 Version  : 1.6.3
-Release  : 27
+Release  : 29
 URL      : https://www.samba.org/ftp/pub/ldb/ldb-1.6.3.tar.gz
 Source0  : https://www.samba.org/ftp/pub/ldb/ldb-1.6.3.tar.gz
 Summary  : A schema-less, ldap like, API and database
@@ -110,14 +110,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1553362686
+export SOURCE_DATE_EPOCH=1553364277
 export LDFLAGS="${LDFLAGS} -fno-lto"
 %configure --disable-static --with-modulesdir=/usr/lib64/ldb/modules \
 --disable-rpath --disable-rpath-install
 make  %{?_smp_mflags} LDB_MODULESDIR=/usr/lib64/ldb/modules
 
 %install
-export SOURCE_DATE_EPOCH=1553362686
+export SOURCE_DATE_EPOCH=1553364277
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/ldb
 cp third_party/popt/COPYING %{buildroot}/usr/share/package-licenses/ldb/third_party_popt_COPYING
@@ -128,10 +128,6 @@ cp third_party/popt/COPYING %{buildroot}/usr/share/package-licenses/ldb/third_pa
 
 %files bin
 %defattr(-,root,root,-)
-%exclude /usr/bin/tdbbackup
-%exclude /usr/bin/tdbdump
-%exclude /usr/bin/tdbrestore
-%exclude /usr/bin/tdbtool
 /usr/bin/ldbadd
 /usr/bin/ldbdel
 /usr/bin/ldbedit
@@ -161,14 +157,6 @@ cp third_party/popt/COPYING %{buildroot}/usr/share/package-licenses/ldb/third_pa
 /usr/lib64/ldb/libldb-mdb-int.so
 /usr/lib64/ldb/libldb-tdb-err-map.so
 /usr/lib64/ldb/libldb-tdb-int.so
-/usr/lib64/ldb/libpytalloc-util.cpython-37m-x86-64-linux-gnu.so.2
-/usr/lib64/ldb/libpytalloc-util.cpython-37m-x86-64-linux-gnu.so.2.2.0
-/usr/lib64/ldb/libtalloc.so.2
-/usr/lib64/ldb/libtalloc.so.2.2.0
-/usr/lib64/ldb/libtdb.so.1
-/usr/lib64/ldb/libtdb.so.1.4.0
-/usr/lib64/ldb/libtevent.so.0
-/usr/lib64/ldb/libtevent.so.0.10.0
 /usr/lib64/ldb/modules/ldb/asq.so
 /usr/lib64/ldb/modules/ldb/ldap.so
 /usr/lib64/ldb/modules/ldb/mdb.so
