@@ -4,7 +4,7 @@
 #
 Name     : ldb
 Version  : 1.6.3
-Release  : 29
+Release  : 30
 URL      : https://www.samba.org/ftp/pub/ldb/ldb-1.6.3.tar.gz
 Source0  : https://www.samba.org/ftp/pub/ldb/ldb-1.6.3.tar.gz
 Summary  : A schema-less, ldap like, API and database
@@ -110,14 +110,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1553364277
+export SOURCE_DATE_EPOCH=1553371214
 export LDFLAGS="${LDFLAGS} -fno-lto"
 %configure --disable-static --with-modulesdir=/usr/lib64/ldb/modules \
 --disable-rpath --disable-rpath-install
 make  %{?_smp_mflags} LDB_MODULESDIR=/usr/lib64/ldb/modules
 
 %install
-export SOURCE_DATE_EPOCH=1553364277
+export SOURCE_DATE_EPOCH=1553371214
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/ldb
 cp third_party/popt/COPYING %{buildroot}/usr/share/package-licenses/ldb/third_party_popt_COPYING
