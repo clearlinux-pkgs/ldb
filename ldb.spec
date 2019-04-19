@@ -4,10 +4,10 @@
 #
 Name     : ldb
 Version  : 1.5.4
-Release  : 31
+Release  : 32
 URL      : https://www.samba.org/ftp/pub/ldb/ldb-1.5.4.tar.gz
 Source0  : https://www.samba.org/ftp/pub/ldb/ldb-1.5.4.tar.gz
-Summary  : A schema-less, ldap like, API and database
+Summary  : An LDAP-like embedded database
 Group    : Development/Tools
 License  : X11
 Requires: ldb-bin = %{version}-%{release}
@@ -30,12 +30,8 @@ BuildRequires : tevent-python3
 Patch1: 0001-add-mock-disable-static-option.patch
 
 %description
-This subsystem ensures that we can always use a certain core set of
-functions and types, that are either provided by the OS or by replacement
-functions / definitions in this subsystem. The aim is to try to stick
-to POSIX functions in here as much as possible. Convenience functions
-that are available on no platform at all belong in other subsystems
-(such as LIBUTIL).
+See http://code.google.com/p/waf/ for more information on waf
+You can get a svn copy of the upstream source with:
 
 %package bin
 Summary: bin components for the ldb package.
@@ -110,14 +106,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1553372441
+export SOURCE_DATE_EPOCH=1555711415
 export LDFLAGS="${LDFLAGS} -fno-lto"
 %configure --disable-static --with-modulesdir=/usr/lib64/ldb/modules \
 --disable-rpath --disable-rpath-install
 make  %{?_smp_mflags} LDB_MODULESDIR=/usr/lib64/ldb/modules
 
 %install
-export SOURCE_DATE_EPOCH=1553372441
+export SOURCE_DATE_EPOCH=1555711415
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/ldb
 cp third_party/popt/COPYING %{buildroot}/usr/share/package-licenses/ldb/third_party_popt_COPYING
@@ -147,11 +143,13 @@ cp third_party/popt/COPYING %{buildroot}/usr/share/package-licenses/ldb/third_pa
 %defattr(-,root,root,-)
 /usr/lib64/libpyldb-util.cpython-37m-x86-64-linux-gnu.so
 /usr/lib64/libpyldb-util.cpython-37m-x86-64-linux-gnu.so.1
+/usr/lib64/libpyldb-util.cpython-37m-x86-64-linux-gnu.so.1.5.4
 
 %files lib
 %defattr(-,root,root,-)
 %exclude /usr/lib64/ldb/modules/ldb/ldb.so
 %exclude /usr/lib64/libpyldb-util.cpython-37m-x86-64-linux-gnu.so.1
+%exclude /usr/lib64/libpyldb-util.cpython-37m-x86-64-linux-gnu.so.1.5.4
 /usr/lib64/ldb/libldb-cmdline.so
 /usr/lib64/ldb/libldb-key-value.so
 /usr/lib64/ldb/libldb-mdb-int.so
@@ -168,7 +166,6 @@ cp third_party/popt/COPYING %{buildroot}/usr/share/package-licenses/ldb/third_pa
 /usr/lib64/ldb/modules/ldb/tdb.so
 /usr/lib64/libldb.so.1
 /usr/lib64/libldb.so.1.5.4
-/usr/lib64/libpyldb-util.cpython-37m-x86-64-linux-gnu.so.1.5.4
 
 %files license
 %defattr(0644,root,root,0755)
