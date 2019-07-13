@@ -4,7 +4,7 @@
 #
 Name     : ldb
 Version  : 1.5.5
-Release  : 35
+Release  : 36
 URL      : https://www.samba.org/ftp/pub/ldb/ldb-1.5.5.tar.gz
 Source0  : https://www.samba.org/ftp/pub/ldb/ldb-1.5.5.tar.gz
 Summary  : A schema-less, ldap like, API and database
