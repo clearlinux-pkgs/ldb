@@ -4,10 +4,10 @@
 #
 Name     : ldb
 Version  : 1.5.5
-Release  : 36
+Release  : 37
 URL      : https://www.samba.org/ftp/pub/ldb/ldb-1.5.5.tar.gz
 Source0  : https://www.samba.org/ftp/pub/ldb/ldb-1.5.5.tar.gz
-Summary  : A schema-less, ldap like, API and database
+Summary  : An LDAP-like embedded database
 Group    : Development/Tools
 License  : X11
 Requires: ldb-bin = %{version}-%{release}
@@ -22,7 +22,7 @@ BuildRequires : openldap-dev
 BuildRequires : popt-dev
 BuildRequires : python3-dev
 BuildRequires : talloc-dev
-BuildRequires : talloc-python3
+BuildRequires : talloc-extras
 BuildRequires : tdb-dev
 BuildRequires : tdb-python3
 BuildRequires : tevent-dev
@@ -30,12 +30,8 @@ BuildRequires : tevent-python3
 Patch1: 0001-add-mock-disable-static-option.patch
 
 %description
-This subsystem ensures that we can always use a certain core set of
-functions and types, that are either provided by the OS or by replacement
-functions / definitions in this subsystem. The aim is to try to stick
-to POSIX functions in here as much as possible. Convenience functions
-that are available on no platform at all belong in other subsystems
-(such as LIBUTIL).
+See http://code.google.com/p/waf/ for more information on waf
+You can get a svn copy of the upstream source with:
 
 %package bin
 Summary: bin components for the ldb package.
@@ -52,7 +48,6 @@ Group: Development
 Requires: ldb-lib = %{version}-%{release}
 Requires: ldb-bin = %{version}-%{release}
 Provides: ldb-devel = %{version}-%{release}
-Requires: ldb = %{version}-%{release}
 Requires: ldb = %{version}-%{release}
 
 %description dev
@@ -111,7 +106,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1562605240
+export SOURCE_DATE_EPOCH=1567710740
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -122,11 +117,17 @@ export CXXFLAGS="$CXXFLAGS -fno-lto "
 make  %{?_smp_mflags} LDB_MODULESDIR=/usr/lib64/ldb/modules
 
 %install
-export SOURCE_DATE_EPOCH=1562605240
+export SOURCE_DATE_EPOCH=1567710740
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/ldb
 cp third_party/popt/COPYING %{buildroot}/usr/share/package-licenses/ldb/third_party_popt_COPYING
 %make_install
+## Remove excluded files
+rm -f %{buildroot}/usr/bin/tdbbackup
+rm -f %{buildroot}/usr/bin/tdbdump
+rm -f %{buildroot}/usr/bin/tdbrestore
+rm -f %{buildroot}/usr/bin/tdbtool
+rm -f %{buildroot}/usr/lib64/ldb/modules/ldb/ldb.so
 
 %files
 %defattr(-,root,root,-)
@@ -142,8 +143,12 @@ cp third_party/popt/COPYING %{buildroot}/usr/share/package-licenses/ldb/third_pa
 
 %files dev
 %defattr(-,root,root,-)
-%exclude /usr/lib64/libpyldb-util.cpython-37m-x86-64-linux-gnu.so
-/usr/include/*.h
+/usr/include/ldb.h
+/usr/include/ldb_errors.h
+/usr/include/ldb_handlers.h
+/usr/include/ldb_module.h
+/usr/include/ldb_version.h
+/usr/include/pyldb.h
 /usr/lib64/libldb.so
 /usr/lib64/pkgconfig/ldb.pc
 /usr/lib64/pkgconfig/pyldb-util.cpython-37m-x86_64-linux-gnu.pc
@@ -156,9 +161,6 @@ cp third_party/popt/COPYING %{buildroot}/usr/share/package-licenses/ldb/third_pa
 
 %files lib
 %defattr(-,root,root,-)
-%exclude /usr/lib64/ldb/modules/ldb/ldb.so
-%exclude /usr/lib64/libpyldb-util.cpython-37m-x86-64-linux-gnu.so.1
-%exclude /usr/lib64/libpyldb-util.cpython-37m-x86-64-linux-gnu.so.1.5.5
 /usr/lib64/ldb/libldb-cmdline.so
 /usr/lib64/ldb/libldb-key-value.so
 /usr/lib64/ldb/libldb-mdb-int.so

@@ -7,7 +7,8 @@ openldap-dev
 popt-dev
 python3-dev
 talloc-dev
-talloc-python3
+# libpytalloc-util development files live in -extras for now, until -dev can requires -extras
+talloc-extras
 tdb-dev
 tdb-python3
 tevent-dev
