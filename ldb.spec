@@ -4,10 +4,10 @@
 #
 Name     : ldb
 Version  : 2.0.7
-Release  : 39
+Release  : 40
 URL      : https://www.samba.org/ftp/pub/ldb/ldb-2.0.7.tar.gz
 Source0  : https://www.samba.org/ftp/pub/ldb/ldb-2.0.7.tar.gz
-Summary  : A schema-less, ldap like, API and database
+Summary  : An LDAP-like embedded database
 Group    : Development/Tools
 License  : X11
 Requires: ldb-bin = %{version}-%{release}
@@ -30,12 +30,8 @@ BuildRequires : tevent-python3
 Patch1: 0001-add-mock-disable-static-option.patch
 
 %description
-This subsystem ensures that we can always use a certain core set of
-functions and types, that are either provided by the OS or by replacement
-functions / definitions in this subsystem. The aim is to try to stick
-to POSIX functions in here as much as possible. Convenience functions
-that are available on no platform at all belong in other subsystems
-(such as LIBUTIL).
+See http://code.google.com/p/waf/ for more information on waf
+You can get a svn copy of the upstream source with:
 
 %package bin
 Summary: bin components for the ldb package.
@@ -52,7 +48,6 @@ Group: Development
 Requires: ldb-lib = %{version}-%{release}
 Requires: ldb-bin = %{version}-%{release}
 Provides: ldb-devel = %{version}-%{release}
-Requires: ldb = %{version}-%{release}
 Requires: ldb = %{version}-%{release}
 
 %description dev
@@ -111,8 +106,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571006146
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1571016137
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -123,7 +117,7 @@ export CXXFLAGS="$CXXFLAGS -fno-lto "
 make  %{?_smp_mflags}  LDB_MODULESDIR=/usr/lib64/ldb/modules
 
 %install
-export SOURCE_DATE_EPOCH=1571006146
+export SOURCE_DATE_EPOCH=1571016137
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/ldb
 cp %{_builddir}/ldb-2.0.7/third_party/popt/COPYING %{buildroot}/usr/share/package-licenses/ldb/61bb7a8ea669080cfc9e7dbf37079eae70b535fb
@@ -162,6 +156,7 @@ rm -f %{buildroot}/usr/lib64/ldb/modules/ldb/ldb.so
 %files extras
 %defattr(-,root,root,-)
 /usr/lib64/libpyldb-util.cpython-37m-x86-64-linux-gnu.so
+/usr/lib64/libpyldb-util.cpython-37m-x86-64-linux-gnu.so.2
 /usr/lib64/libpyldb-util.cpython-37m-x86-64-linux-gnu.so.2.0.7
 
 %files lib
@@ -182,7 +177,6 @@ rm -f %{buildroot}/usr/lib64/ldb/modules/ldb/ldb.so
 /usr/lib64/ldb/modules/ldb/tdb.so
 /usr/lib64/libldb.so.2
 /usr/lib64/libldb.so.2.0.7
-/usr/lib64/libpyldb-util.cpython-37m-x86-64-linux-gnu.so.2
 
 %files license
 %defattr(0644,root,root,0755)
