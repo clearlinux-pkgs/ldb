@@ -5,3 +5,4 @@
 /usr/bin/tdbrestore
 /usr/bin/tdbtool
 /usr/lib64/ldb/modules/ldb/ldb.so
+/usr/lib/python3*/site-packages/talloc.cpython-3*-x86_64-linux-gnu.so
