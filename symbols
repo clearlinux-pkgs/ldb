@@ -67,9 +67,7 @@ libldb.so.2:LDB_2.0.2
 libldb.so.2:LDB_2.0.3
 libldb.so.2:LDB_2.0.4
 libldb.so.2:LDB_2.0.5
-libldb.so.2:LDB_2.0.6
-libldb.so.2:LDB_2.0.7
-libldb.so.2:LDB_2.0.8
+libldb.so.2:LDB_2.1.0
 libldb.so.2:ldb_add
 libldb.so.2:ldb_any_comparison
 libldb.so.2:ldb_asprintf_errstring
