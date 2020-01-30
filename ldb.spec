@@ -4,7 +4,7 @@
 #
 Name     : ldb
 Version  : 2.1.0
-Release  : 51
+Release  : 52
 URL      : https://www.samba.org/ftp/pub/ldb/ldb-2.1.0.tar.gz
 Source0  : https://www.samba.org/ftp/pub/ldb/ldb-2.1.0.tar.gz
 Summary  : An LDAP-like embedded database
@@ -107,7 +107,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1580153087
+export SOURCE_DATE_EPOCH=1580418948
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -119,7 +119,7 @@ export CXXFLAGS="$CXXFLAGS -fno-lto "
 make  %{?_smp_mflags}  LDB_MODULESDIR=/usr/lib64/ldb/modules
 
 %install
-export SOURCE_DATE_EPOCH=1580153087
+export SOURCE_DATE_EPOCH=1580418948
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/ldb
 cp %{_builddir}/ldb-2.1.0/third_party/popt/COPYING %{buildroot}/usr/share/package-licenses/ldb/61bb7a8ea669080cfc9e7dbf37079eae70b535fb
