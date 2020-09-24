@@ -4,7 +4,7 @@
 #
 Name     : ldb
 Version  : 2.1.4
-Release  : 57
+Release  : 58
 URL      : https://www.samba.org/ftp/pub/ldb/ldb-2.1.4.tar.gz
 Source0  : https://www.samba.org/ftp/pub/ldb/ldb-2.1.4.tar.gz
 Summary  : An LDAP-like embedded database
