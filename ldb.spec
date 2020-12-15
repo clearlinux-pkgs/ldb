@@ -4,7 +4,7 @@
 #
 Name     : ldb
 Version  : 2.2.0
-Release  : 64
+Release  : 65
 URL      : https://www.samba.org/ftp/pub/ldb/ldb-2.2.0.tar.gz
 Source0  : https://www.samba.org/ftp/pub/ldb/ldb-2.2.0.tar.gz
 Summary  : An LDAP-like embedded database
@@ -107,7 +107,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1607993341
+export SOURCE_DATE_EPOCH=1607996620
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -119,7 +119,7 @@ export CXXFLAGS="$CXXFLAGS -fno-lto "
 make  %{?_smp_mflags}  LDB_MODULESDIR=/usr/lib64/ldb/modules
 
 %install
-export SOURCE_DATE_EPOCH=1607993341
+export SOURCE_DATE_EPOCH=1607996620
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/ldb
 cp %{_builddir}/ldb-2.2.0/third_party/popt/COPYING %{buildroot}/usr/share/package-licenses/ldb/61bb7a8ea669080cfc9e7dbf37079eae70b535fb
@@ -129,8 +129,8 @@ rm -f %{buildroot}/usr/bin/tdbbackup
 rm -f %{buildroot}/usr/bin/tdbdump
 rm -f %{buildroot}/usr/bin/tdbrestore
 rm -f %{buildroot}/usr/bin/tdbtool
-rm -f %{buildroot}/usr/lib64/ldb/libpytalloc-util.cpython-38-x86-64-linux-gnu.so.2
-rm -f %{buildroot}/usr/lib64/ldb/libpytalloc-util.cpython-38-x86-64-linux-gnu.so.2.2.0
+rm -f %{buildroot}/usr/lib64/ldb/libpytalloc-util.cpython-3*-x86-64-linux-gnu.so.2
+rm -f %{buildroot}/usr/lib64/ldb/libpytalloc-util.cpython-3*-x86-64-linux-gnu.so.2.2.0
 rm -f %{buildroot}/usr/lib64/ldb/modules/ldb/ldb.so
 rm -f %{buildroot}/usr/lib/python3*/site-packages/talloc.cpython-3*-x86_64-linux-gnu.so
 
