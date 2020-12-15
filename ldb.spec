@@ -4,7 +4,7 @@
 #
 Name     : ldb
 Version  : 2.2.0
-Release  : 62
+Release  : 63
 URL      : https://www.samba.org/ftp/pub/ldb/ldb-2.2.0.tar.gz
 Source0  : https://www.samba.org/ftp/pub/ldb/ldb-2.2.0.tar.gz
 Summary  : An LDAP-like embedded database
@@ -107,7 +107,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1602088032
+export SOURCE_DATE_EPOCH=1607993341
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -119,7 +119,7 @@ export CXXFLAGS="$CXXFLAGS -fno-lto "
 make  %{?_smp_mflags}  LDB_MODULESDIR=/usr/lib64/ldb/modules
 
 %install
-export SOURCE_DATE_EPOCH=1602088032
+export SOURCE_DATE_EPOCH=1607993341
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/ldb
 cp %{_builddir}/ldb-2.2.0/third_party/popt/COPYING %{buildroot}/usr/share/package-licenses/ldb/61bb7a8ea669080cfc9e7dbf37079eae70b535fb
@@ -156,13 +156,13 @@ rm -f %{buildroot}/usr/lib/python3*/site-packages/talloc.cpython-3*-x86_64-linux
 /usr/include/pyldb.h
 /usr/lib64/libldb.so
 /usr/lib64/pkgconfig/ldb.pc
-/usr/lib64/pkgconfig/pyldb-util.cpython-38-x86_64-linux-gnu.pc
+/usr/lib64/pkgconfig/pyldb-util.cpython-39-x86_64-linux-gnu.pc
 
 %files extras
 %defattr(-,root,root,-)
-/usr/lib64/libpyldb-util.cpython-38-x86-64-linux-gnu.so
-/usr/lib64/libpyldb-util.cpython-38-x86-64-linux-gnu.so.2
-/usr/lib64/libpyldb-util.cpython-38-x86-64-linux-gnu.so.2.2.0
+/usr/lib64/libpyldb-util.cpython-39-x86-64-linux-gnu.so
+/usr/lib64/libpyldb-util.cpython-39-x86-64-linux-gnu.so.2
+/usr/lib64/libpyldb-util.cpython-39-x86-64-linux-gnu.so.2.2.0
 
 %files lib
 %defattr(-,root,root,-)
