@@ -4,7 +4,7 @@
 #
 Name     : ldb
 Version  : 2.4.0
-Release  : 75
+Release  : 76
 URL      : https://www.samba.org/ftp/pub/ldb/ldb-2.4.0.tar.gz
 Source0  : https://www.samba.org/ftp/pub/ldb/ldb-2.4.0.tar.gz
 Summary  : An LDAP-like embedded database
@@ -54,14 +54,6 @@ Requires: ldb = %{version}-%{release}
 dev components for the ldb package.
 
 
-%package extras
-Summary: extras components for the ldb package.
-Group: Default
-
-%description extras
-extras components for the ldb package.
-
-
 %package lib
 Summary: lib components for the ldb package.
 Group: Libraries
@@ -107,7 +99,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1632425554
+export SOURCE_DATE_EPOCH=1635529224
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -119,20 +111,20 @@ export CXXFLAGS="$CXXFLAGS -fno-lto "
 make  %{?_smp_mflags}  LDB_MODULESDIR=/usr/lib64/ldb/modules
 
 %install
-export SOURCE_DATE_EPOCH=1632425554
+export SOURCE_DATE_EPOCH=1635529224
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/ldb
 cp %{_builddir}/ldb-2.4.0/third_party/popt/COPYING %{buildroot}/usr/share/package-licenses/ldb/61bb7a8ea669080cfc9e7dbf37079eae70b535fb
 %make_install
 ## Remove excluded files
-rm -f %{buildroot}/usr/bin/tdbbackup
-rm -f %{buildroot}/usr/bin/tdbdump
-rm -f %{buildroot}/usr/bin/tdbrestore
-rm -f %{buildroot}/usr/bin/tdbtool
-rm -f %{buildroot}/usr/lib64/ldb/libpytalloc-util.cpython-3*-x86-64-linux-gnu.so.2
-rm -f %{buildroot}/usr/lib64/ldb/libpytalloc-util.cpython-3*-x86-64-linux-gnu.so.2.2.0
-rm -f %{buildroot}/usr/lib64/ldb/modules/ldb/ldb.so
-rm -f %{buildroot}/usr/lib/python3*/site-packages/talloc.cpython-3*-x86_64-linux-gnu.so
+rm -f %{buildroot}*/usr/bin/tdbbackup
+rm -f %{buildroot}*/usr/bin/tdbdump
+rm -f %{buildroot}*/usr/bin/tdbrestore
+rm -f %{buildroot}*/usr/bin/tdbtool
+rm -f %{buildroot}*/usr/lib64/ldb/libpytalloc-util.cpython-3*-x86-64-linux-gnu.so.2
+rm -f %{buildroot}*/usr/lib64/ldb/libpytalloc-util.cpython-3*-x86-64-linux-gnu.so.2.2.0
+rm -f %{buildroot}*/usr/lib64/ldb/modules/ldb/ldb.so
+rm -f %{buildroot}*/usr/lib/python3*/site-packages/talloc.cpython-3*-x86_64-linux-gnu.so
 
 %files
 %defattr(-,root,root,-)
@@ -155,14 +147,9 @@ rm -f %{buildroot}/usr/lib/python3*/site-packages/talloc.cpython-3*-x86_64-linux
 /usr/include/ldb_version.h
 /usr/include/pyldb.h
 /usr/lib64/libldb.so
+/usr/lib64/libpyldb-util.cpython-310-x86-64-linux-gnu.so
 /usr/lib64/pkgconfig/ldb.pc
-/usr/lib64/pkgconfig/pyldb-util.cpython-39-x86_64-linux-gnu.pc
-
-%files extras
-%defattr(-,root,root,-)
-/usr/lib64/libpyldb-util.cpython-39-x86-64-linux-gnu.so
-/usr/lib64/libpyldb-util.cpython-39-x86-64-linux-gnu.so.2
-/usr/lib64/libpyldb-util.cpython-39-x86-64-linux-gnu.so.2.4.0
+/usr/lib64/pkgconfig/pyldb-util.cpython-310-x86_64-linux-gnu.pc
 
 %files lib
 %defattr(-,root,root,-)
@@ -171,6 +158,7 @@ rm -f %{buildroot}/usr/lib/python3*/site-packages/talloc.cpython-3*-x86_64-linux
 /usr/lib64/ldb/libldb-mdb-int.so
 /usr/lib64/ldb/libldb-tdb-err-map.so
 /usr/lib64/ldb/libldb-tdb-int.so
+/usr/lib64/ldb/libpytalloc-util.cpython-310-x86-64-linux-gnu.so.2.3.3
 /usr/lib64/ldb/modules/ldb/asq.so
 /usr/lib64/ldb/modules/ldb/ldap.so
 /usr/lib64/ldb/modules/ldb/mdb.so
@@ -182,6 +170,8 @@ rm -f %{buildroot}/usr/lib/python3*/site-packages/talloc.cpython-3*-x86_64-linux
 /usr/lib64/ldb/modules/ldb/tdb.so
 /usr/lib64/libldb.so.2
 /usr/lib64/libldb.so.2.4.0
+/usr/lib64/libpyldb-util.cpython-310-x86-64-linux-gnu.so.2
+/usr/lib64/libpyldb-util.cpython-310-x86-64-linux-gnu.so.2.4.0
 
 %files license
 %defattr(0644,root,root,0755)
