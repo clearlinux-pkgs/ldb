@@ -72,7 +72,9 @@ libldb.so.2:LDB_2.1.1
 libldb.so.2:LDB_2.2.0
 libldb.so.2:LDB_2.4.0
 libldb.so.2:LDB_2.4.1
-libldb.so.2:LDB_2.4.2
+libldb.so.2:LDB_2.5.0
+libldb.so.2:LDB_2.6.0
+libldb.so.2:LDB_2.6.1
 libldb.so.2:ldb_add
 libldb.so.2:ldb_any_comparison
 libldb.so.2:ldb_asprintf_errstring
@@ -230,7 +232,14 @@ libldb.so.2:ldb_msg_add_linearized_dn
 libldb.so.2:ldb_msg_add_steal_string
 libldb.so.2:ldb_msg_add_steal_value
 libldb.so.2:ldb_msg_add_string
+libldb.so.2:ldb_msg_add_string_flags
 libldb.so.2:ldb_msg_add_value
+libldb.so.2:ldb_msg_append_fmt
+libldb.so.2:ldb_msg_append_linearized_dn
+libldb.so.2:ldb_msg_append_steal_string
+libldb.so.2:ldb_msg_append_steal_value
+libldb.so.2:ldb_msg_append_string
+libldb.so.2:ldb_msg_append_value
 libldb.so.2:ldb_msg_canonicalize
 libldb.so.2:ldb_msg_check_string_attribute
 libldb.so.2:ldb_msg_copy
@@ -238,6 +247,7 @@ libldb.so.2:ldb_msg_copy_attr
 libldb.so.2:ldb_msg_copy_shallow
 libldb.so.2:ldb_msg_diff
 libldb.so.2:ldb_msg_difference
+libldb.so.2:ldb_msg_element_add_value
 libldb.so.2:ldb_msg_element_compare
 libldb.so.2:ldb_msg_element_compare_name
 libldb.so.2:ldb_msg_element_equal_ordered
