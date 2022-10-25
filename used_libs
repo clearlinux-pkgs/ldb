@@ -1,12 +1,10 @@
 libc.so.6
-libcrypt.so.1
 liblber-2.4.so.2
 libldap-2.4.so.2
 liblmdb.so
 libm.so.6
 libpopt.so.0
-libpyldb-util.cpython-310-x86-64-linux-gnu.so.2
-libpython3.10.so.1.0
+libpython3.11.so.1.0
 libtalloc.so.2
 libtdb.so.1
 libtevent.so.0
