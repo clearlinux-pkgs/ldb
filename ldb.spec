@@ -5,7 +5,7 @@
 #
 Name     : ldb
 Version  : 2.7.2
-Release  : 95
+Release  : 96
 URL      : https://www.samba.org/ftp/pub/ldb/ldb-2.7.2.tar.gz
 Source0  : https://www.samba.org/ftp/pub/ldb/ldb-2.7.2.tar.gz
 Summary  : An LDAP-like embedded database
@@ -59,6 +59,14 @@ Requires: ldb = %{version}-%{release}
 dev components for the ldb package.
 
 
+%package extras
+Summary: extras components for the ldb package.
+Group: Default
+
+%description extras
+extras components for the ldb package.
+
+
 %package lib
 Summary: lib components for the ldb package.
 Group: Libraries
@@ -104,7 +112,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1697218189
+export SOURCE_DATE_EPOCH=1697219410
 export GCC_IGNORE_WERROR=1
 CLEAR_INTERMEDIATE_CFLAGS="$CLEAR_INTERMEDIATE_CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 CLEAR_INTERMEDIATE_FCFLAGS="$CLEAR_INTERMEDIATE_FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
@@ -133,7 +141,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1697218189
+export SOURCE_DATE_EPOCH=1697219410
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/ldb
 cp %{_builddir}/ldb-%{version}/third_party/popt/COPYING %{buildroot}/usr/share/package-licenses/ldb/61bb7a8ea669080cfc9e7dbf37079eae70b535fb || :
@@ -172,9 +180,12 @@ rm -f %{buildroot}*/usr/lib/python3*/site-packages/tevent.py
 /usr/include/ldb_version.h
 /usr/include/pyldb.h
 /usr/lib64/libldb.so
-/usr/lib64/libpyldb-util.cpython-312-x86-64-linux-gnu.so
 /usr/lib64/pkgconfig/ldb.pc
 /usr/lib64/pkgconfig/pyldb-util.cpython-312-x86_64-linux-gnu.pc
+
+%files extras
+%defattr(-,root,root,-)
+/usr/lib64/libpyldb-util.cpython-312-x86-64-linux-gnu.so*
 
 %files lib
 %defattr(-,root,root,-)
@@ -195,8 +206,6 @@ rm -f %{buildroot}*/usr/lib/python3*/site-packages/tevent.py
 /usr/lib64/ldb/modules/ldb/tdb.so
 /usr/lib64/libldb.so.2
 /usr/lib64/libldb.so.2.7.2
-/usr/lib64/libpyldb-util.cpython-312-x86-64-linux-gnu.so.2
-/usr/lib64/libpyldb-util.cpython-312-x86-64-linux-gnu.so.2.7.2
 
 %files license
 %defattr(0644,root,root,0755)
