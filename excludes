@@ -4,6 +4,7 @@
 /usr/bin/tdbdump
 /usr/bin/tdbrestore
 /usr/bin/tdbtool
+/usr/lib64/ldb/libpytalloc-util.cpython-3*-x86-64-linux-gnu-ldb.so
 /usr/lib64/ldb/libpytalloc-util.cpython-3*-x86-64-linux-gnu.so.2
 /usr/lib64/ldb/libpytalloc-util.cpython-3*-x86-64-linux-gnu.so.2.2.0
 /usr/lib64/ldb/modules/ldb/ldb.so
