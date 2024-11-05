@@ -3,6 +3,7 @@ liblber.so.2
 libldap.so.2
 liblmdb.so
 libpopt.so.0
+libpyldb-util.cpython-313-x86-64-linux-gnu.so.2
 libpython3.13.so.1.0
 libtalloc.so.2
 libtdb.so.1
